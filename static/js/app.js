@@ -24,7 +24,7 @@ async function main()
     const home_response = await fetch(home_url);
     const data = await home_response.json();
    
-    var stockticker_id = data[0];
+    var stockticker = data[0];
 
     let list = [];
 
