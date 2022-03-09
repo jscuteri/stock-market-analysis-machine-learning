@@ -35,7 +35,7 @@ async function main()
     };
     let unique_stock =[... new Set(list)].sort();
 
-    countryOptionChanged(unique_stock[0]);
+    //stockOptionChanged(unique_stock[0]);
 
     // appending the list to the dropdown
     for (let i = 0; i < unique_stock.length; i++) {
@@ -56,38 +56,36 @@ async function chartbuild()
    
     var stockticker = data[0];
 
-    var trace1 =  [{
+    var trace1 =  {
         x: [Xp],
         y: [y],
         type: 'scatter',
         label: [stock_id + "History"],
         color: "blue"
-    }],
+    };
     
-    var trace2=  [{
+    var trace2=  {
         x: [Xp],
         y: [y_learned],
         type: 'scatter',
         label: [stock_id + "Mathmatical Model"],
         color: "red"
-    }],
+    };
     
-    var trace3=  [{
+    var trace3=  {
         x: [future_x],
         y: [y_predict],
         type: 'scatter',
         label: [stock_id + "Future Predictions"],
         color: "green"
-    }];
+    };
     
     var chart = [trace1, trace2, trace3];
 
-    var layout = {
-        title:'S&P 500 Materials Sector f'{stock_id} + 'Price Predictions'
-    };
+    var layout = {title:'S&P 500 Materials Sector Price Predictions'};
     
     Plotly.newPlot('myDiv', chart, layout);
 
-};
-let data = {}       
+}; 
+};  
 main();
