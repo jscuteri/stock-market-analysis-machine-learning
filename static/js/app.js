@@ -47,37 +47,47 @@ async function main()
         section.append(option)
     };
 
-// build chart since data is already there
+// build chart since 
+async function chartbuild()
+{
+    let home_url = "/stock";
+    const home_response = await fetch(home_url);
+    const data = await home_response.json();
+   
+    var stockticker = data[0];
+
     var trace1 =  [{
         x: [Xp],
         y: [y],
         type: 'scatter',
         label: [stock_id + "History"],
         color: "blue"
-    };
-
+    }],
+    
     var trace2=  [{
         x: [Xp],
         y: [y_learned],
         type: 'scatter',
         label: [stock_id + "Mathmatical Model"],
         color: "red"
-    };
+    }],
+    
     var trace3=  [{
         x: [future_x],
         y: [y_predict],
         type: 'scatter',
         label: [stock_id + "Future Predictions"],
         color: "green"
-    };
+    }];
     
-    var data = [trace1, trace2, trace3];
+    var chart = [trace1, trace2, trace3];
 
     var layout = {
         title:'S&P 500 Materials Sector f'{stock_id} + 'Price Predictions'
     };
     
-    Plotly.newPlot('myDiv', data, layout);
+    Plotly.newPlot('myDiv', chart, layout);
+
 };
 let data = {}       
 main();
