@@ -54,7 +54,7 @@ async function main()
         type: 'scatter',
         label: [stock_id + "History"],
         color: "blue"
-    },
+    };
 
     var trace2=  [{
         x: [Xp],
@@ -62,14 +62,14 @@ async function main()
         type: 'scatter',
         label: [stock_id + "Mathmatical Model"],
         color: "red"
-    },
+    };
     var trace3=  [{
         x: [future_x],
         y: [y_predict],
         type: 'scatter',
-        label: [stock_id + "Future Predictions],
+        label: [stock_id + "Future Predictions"],
         color: "green"
-    },
+    };
     
     var data = [trace1, trace2, trace3];
 
@@ -77,7 +77,7 @@ async function main()
         title:'S&P 500 Materials Sector f'{stock_id} + 'Price Predictions'
     };
     
-      Plotly.newPlot('myDiv', data, layout);
+    Plotly.newPlot('myDiv', data, layout);
 };
 let data = {}       
 main();
