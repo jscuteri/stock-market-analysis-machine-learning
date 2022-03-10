@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Our own CSS stylesheet -->
+    <link rel="stylesheet" type="text/css" href="static/css/style.css" media="screen">
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Datepicker -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+
+
+    
+    <title>Stock Price Predictor</title>
+</head>
+
+<body class="main-custom main-text">
+    <!-- NAV BAR -->
+    <div class = "container">
+        <!-- <h2>Stock Price Predictor Machine Learning</h2> -->
+        <nav class = "navbar navbar-expand-md bg-secondary navbar-dark">
+           <a class = "navbar-brand" href = "index.html">Stock Price Predictor Machine Learning</a>
+           <button class = "navbar-toggler" type = "button" data-toggle = "collapse" 
+              data-target = "#navbarNavDropdown" aria-controls = "navbarNavDropdown" 
+              aria-expanded = "false" aria-label = "Toggle navigation">
+              
+              <span class="navbar-toggler-icon"></span>
+           </button>
+           
+           <div class = "collapse navbar-collapse" id = "navbarNavDropdown">
+              <ul class = "navbar-nav">
+                 <li class = "nav-item active">
+                    <a class = "nav-link" href = "index.html">Home 
+                       <span class = "sr-only">(current)</span>
+                    </a>
+                 </li>
+                 <li class = "nav-item dropdown">
+                    <a class = "nav-link dropdown-toggle" href = "#" 
+                       id = "navbarDropdownMenuLink" role = "button" data-toggle = "dropdown" 
+                       aria-haspopup = "true" aria-expanded = "false">
+                       
+                       Members GitHub
+                    </a>
+                    
+                    <div class = "dropdown-menu" aria-labelledby = "navbarDropdownMenuLink">
+                       <a class = "dropdown-item" href = "https://github.com/mandie021">Amanda Jacobson</a>
+                       <a class = "dropdown-item" href = "https://github.com/Jmerjan">Jacob Merjan</a>
+                       <a class = "dropdown-item" href = "https://github.com/jscuteri">Joe Scurteri</a>
+                       <a class = "dropdown-item" href = "https://github.com/asligh">Ashley Sligh</a>
+                    </div>
+                 </li>
+              </ul>
+              
+           </div>
+        </nav>
+     </div>
+     <!-- Entry of the info -->
+     <div class="container">
+    
+        <div class="main-custom main-text">
+        <h2 class="main-text">Stock Price Predictor</h2>
+        <p>Select the sector from the dropdown, choose a start and end date, and click submit</p>
+        <br>
+
+        <br>
+    <!-- Date Picker -->
+    <div class='container'>
+    
+        <form autocomplete="off">
+            <div class="dropdown">
+                <select id="selDataset" onchange="optionChanged(this.value)"></select>
+            </div>
+            <input type="text"  placehoder="Start Date" id="startdate"/>Start Date
+            <br>
+            <input type="text" placehoder="End Date" id="enddate"/> End Date
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    
+    </div>
+    
+    <!-- Script -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+        $("#startdate").datepicker({
+            todayBtn:  1,
+            autoclose: true,
+        }).on('changeDate', function (selected) {
+            var minDate = new Date(selected.date.valueOf());
+            $('#enddate').datepicker('setStartDate', minDate);
+        });
+
+        $("#enddate").datepicker()
+            .on('changeDate', function (selected) {
+                var maxDate = new Date(selected.date.valueOf());
+                $('#startdate').datepicker('setEndDate', maxDate);
+            });
+
+        });
+    </script>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<!-- flask to js -->
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</html>
