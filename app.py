@@ -7,8 +7,7 @@ from sqlalchemy import create_engine, func
 import numpy as np
 
 
-#engine = create_engine("postgresql://postgres:Static2$@localhost:5432/StockMarket")
-engine = create_engine("postgresql://postgres:Scoots37*@localhost:5432/StockMarket")
+engine = create_engine("postgresql://postgres:Static2$@localhost:5432/StockMarket")
 
 # reflect an existing database into a new model
 Base = automap_base()
@@ -60,9 +59,10 @@ def stock():
                            dia.xp
     ).all()
 
-    dia_dic = {}
+    dia_data = []
 
     for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in result:
+        dia_dic = {}
         dia_dic["future_x2050"] = future_x2050
         dia_dic["y_predict2050"] = y_predict2050
         dia_dic["y_predict"] = y_predict
@@ -70,6 +70,7 @@ def stock():
         dia_dic["y_learned"] = y_learned
         dia_dic["y"] = y
         dia_dic["xp"] = xp
+        dia_data.append(dia_dic)
 
 
 ### IWM
@@ -84,9 +85,10 @@ def stock():
     ).all()
 
 
-    iwm_dic = {}
+    iwm_data = []
 
     for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in iwm_result:
+        iwm_dic = {}
         iwm_dic["future_x2050"] = future_x2050
         iwm_dic["y_predict2050"] = y_predict2050
         iwm_dic["y_predict"] = y_predict
@@ -94,6 +96,7 @@ def stock():
         iwm_dic["y_learned"] = y_learned
         iwm_dic["y"] = y
         iwm_dic["xp"] = xp
+        iwm_data.append(iwm_dic)
 
 ### QQQ
 
@@ -107,9 +110,10 @@ def stock():
     ).all()
 
 
-    qqq_dic = {}
+    qqq_data = []
 
     for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in qqq_result:
+        qqq_dic = {}
         qqq_dic["future_x2050"] = future_x2050
         qqq_dic["y_predict2050"] = y_predict2050
         qqq_dic["y_predict"] = y_predict
@@ -117,6 +121,7 @@ def stock():
         qqq_dic["y_learned"] = y_learned
         qqq_dic["y"] = y
         qqq_dic["xp"] = xp
+        qqq_data.append(qqq_dic)
 
 ### SPY
 
@@ -130,9 +135,10 @@ def stock():
     ).all()
 
 
-    spy_dic = {}
+    spy_data = []
 
     for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in spy_result:
+        spy_dic = {}
         spy_dic["future_x2050"] = future_x2050
         spy_dic["y_predict2050"] = y_predict2050
         spy_dic["y_predict"] = y_predict
@@ -140,6 +146,7 @@ def stock():
         spy_dic["y_learned"] = y_learned
         spy_dic["y"] = y
         spy_dic["xp"] = xp
+        spy_data.append(spy_dic)
     
 ### XLB
 
@@ -153,16 +160,18 @@ def stock():
     ).all()
 
 
-    xlb_dic = {}
+    xlb_data = []
 
     for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xlb_result:
+        xlb_dic = {}
         xlb_dic["future_x2050"] = future_x2050
         xlb_dic["y_predict2050"] = y_predict2050
         xlb_dic["y_predict"] = y_predict
         xlb_dic["future_x"] = future_x
         xlb_dic["y_learned"] = y_learned
         xlb_dic["y"] = y
-        xlb_dic["xp"] = xp 
+        xlb_dic["xp"] = xp
+        xlb_data.append(xlb_dic) 
 
 ### XLE
 
@@ -176,16 +185,18 @@ def stock():
     ).all()
 
 
-    xle_dic = {}
+    xle_data = []
 
     for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xle_result:
+        xle_dic = {}
         xle_dic["future_x2050"] = future_x2050
         xle_dic["y_predict2050"] = y_predict2050
         xle_dic["y_predict"] = y_predict
         xle_dic["future_x"] = future_x
         xle_dic["y_learned"] = y_learned
         xle_dic["y"] = y
-        xle_dic["xp"] = xp  
+        xle_dic["xp"] = xp
+        xle_data.append(xlb_dic)  
 
 ### XLF
 
@@ -199,16 +210,18 @@ def stock():
     ).all()
 
 
-    xlf_dic = {}
+    xlf_data = []
 
     for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xlf_result:
+        xlf_dic = {}
         xlf_dic["future_x2050"] = future_x2050
         xlf_dic["y_predict2050"] = y_predict2050
         xlf_dic["y_predict"] = y_predict
         xlf_dic["future_x"] = future_x
         xlf_dic["y_learned"] = y_learned
         xlf_dic["y"] = y
-        xlf_dic["xp"] = xp 
+        xlf_dic["xp"] = xp
+        xlf_data.append(xlf_dic) 
 
 ### XLI
 
@@ -222,9 +235,10 @@ def stock():
     ).all()
 
 
-    xli_dic = {}
+    xli_data = []
 
     for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xli_result:
+        xli_dic = {}
         xli_dic["future_x2050"] = future_x2050
         xli_dic["y_predict2050"] = y_predict2050
         xli_dic["y_predict"] = y_predict
@@ -232,6 +246,7 @@ def stock():
         xli_dic["y_learned"] = y_learned
         xli_dic["y"] = y
         xli_dic["xp"] = xp 
+        xli_data.append(xli_dic)
 
 ### XLK
 
@@ -245,9 +260,10 @@ def stock():
     ).all()
 
 
-    xlk_dic = {}
+    xlk_data = []
 
     for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xlk_result:
+        xlk_dic = {}
         xlk_dic["future_x2050"] = future_x2050
         xlk_dic["y_predict2050"] = y_predict2050
         xlk_dic["y_predict"] = y_predict
@@ -255,6 +271,7 @@ def stock():
         xlk_dic["y_learned"] = y_learned
         xlk_dic["y"] = y
         xlk_dic["xp"] = xp 
+        xlk_data.append(xlk_dic)
 
 ### XLP
 
@@ -268,16 +285,18 @@ def stock():
     ).all()
 
 
-    xlp_dic = {}
+    xlp_data = []
 
     for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xlp_result:
+        xlp_dic = {}
         xlp_dic["future_x2050"] = future_x2050
         xlp_dic["y_predict2050"] = y_predict2050
         xlp_dic["y_predict"] = y_predict
         xlp_dic["future_x"] = future_x
         xlp_dic["y_learned"] = y_learned
         xlp_dic["y"] = y
-        xlp_dic["xp"] = xp 
+        xlp_dic["xp"] = xp
+        xlp_data.append(xlp_dic)
 
 ### XLU
 
@@ -291,16 +310,18 @@ def stock():
     ).all()
 
 
-    xlu_dic = {}
+    xlu_data = []
 
     for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xlu_result:
+        xlu_dic = {}
         xlu_dic["future_x2050"] = future_x2050
         xlu_dic["y_predict2050"] = y_predict2050
         xlu_dic["y_predict"] = y_predict
         xlu_dic["future_x"] = future_x
         xlu_dic["y_learned"] = y_learned
         xlu_dic["y"] = y
-        xlu_dic["xp"] = xp 
+        xlu_dic["xp"] = xp
+        xlu_data.append(xlu_dic) 
 
 ### XLV
 
@@ -314,16 +335,18 @@ def stock():
     ).all()
 
 
-    xlv_dic = {}
+    xlv_data = []
 
     for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xlv_result:
+        xlv_dic = {}
         xlv_dic["future_x2050"] = future_x2050
         xlv_dic["y_predict2050"] = y_predict2050
         xlv_dic["y_predict"] = y_predict
         xlv_dic["future_x"] = future_x
         xlv_dic["y_learned"] = y_learned
         xlv_dic["y"] = y
-        xlv_dic["xp"] = xp 
+        xlv_dic["xp"] = xp
+        xlv_data.append(xlv_dic) 
     
 ### XLY
 
@@ -337,9 +360,10 @@ def stock():
     ).all()
 
 
-    xly_dic = {}
+    xly_data = []
 
     for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xly_result:
+        xly_dic = {}
         xly_dic["future_x2050"] = future_x2050
         xly_dic["y_predict2050"] = y_predict2050
         xly_dic["y_predict"] = y_predict
@@ -347,7 +371,8 @@ def stock():
         xly_dic["y_learned"] = y_learned
         xly_dic["y"] = y
         xly_dic["xp"] = xp 
-    return jsonify(dia_dic, iwm_dic, qqq_dic, spy_dic, xlb_dic, xle_dic, xlf_dic, xli_dic, xlk_dic, xlp_dic, xlu_dic, xlv_dic, xly_dic)
+        xly_data.apend(xlv_dic)
+    return jsonify(dia_data, iwm_data, qqq_data, spy_data, xlb_data, xle_data, xlf_data, xli_data, xlk_data, xlp_data, xlu_data, xlv_data, xly_data)
 
 if __name__ == '__main__':
     app.run(debug=True)
