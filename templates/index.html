@@ -16,17 +16,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
 
-
-    
-    <title>Stock Price Predictor</title>
+    <title>ETF Price Predictor</title>
 </head>
 
 <body class="main-custom main-text">
     <!-- NAV BAR -->
     <div class = "container">
-        <!-- <h2>Stock Price Predictor Machine Learning</h2> -->
+        <!-- <h2>ETF Price Predictor Machine Learning</h2> -->
         <nav class = "navbar navbar-expand-md bg-secondary navbar-dark">
-           <a class = "navbar-brand" href = "index.html">Stock Price Predictor Machine Learning</a>
+           <a class = "navbar-brand" href = "index.html">ETF Price Predictor Machine Learning</a>
            <button class = "navbar-toggler" type = "button" data-toggle = "collapse" 
               data-target = "#navbarNavDropdown" aria-controls = "navbarNavDropdown" 
               aria-expanded = "false" aria-label = "Toggle navigation">
@@ -65,7 +63,7 @@
      <div class="container">
     
         <div class="main-custom main-text">
-        <h2 class="main-text">Stock Price Predictor</h2>
+        <h2 class="main-text">ETF Price Predictor</h2>
         <p>Select the sector from the dropdown, choose a start and end date, and click submit</p>
         <br>
 
@@ -75,13 +73,21 @@
     
         <form autocomplete="off">
             <div class="dropdown">
-                <select id="selDataset" onchange="optionChanged(this.value)"></select>
+                <select id="selDataset"></select>
             </div>
-            <input type="text"  placehoder="Start Date" id="startdate"/>Start Date
+
+            <!-- <input type="text"  placehoder="Start Date" id="startdate"/> Start Date
             <br>
-            <input type="text" placehoder="End Date" id="enddate"/> End Date
+            <input type="text" placehoder="End Date" id="enddate"/> End Date -->
+
             <br>
-            <button type="submit" class="btn btn-primary">Submit</button>
+
+            <button type="submit" class="btn btn-primary" onclick="Submit();return false;">Submit</button>
+
+            &nbsp;
+
+            <button type="submit" class="btn btn-primary">Reset</button>
+
         </form>
     
     </div>
@@ -106,15 +112,49 @@
 
         });
     </script>
-    <!-- Graph -->
+
+    <!-- 2040 Graph -->
     <div class = 'row' style = "text-align: center; margin-top: 50px">
         <div class="col-sm-12">
-        <h4>Current Graph of selection</h4>
-        <p>stuff and words</p>
+
+        <label id='todayPrice2040_1' hidden="hidden">  
+            
+        </label> 
+        
+        &nbsp; &nbsp; &nbsp; &nbsp; 
+        
+        <label id='futurePrice2050_1' hidden="hidden">
+            
+        </label>
+    
         <div id="myDiv" style="height: 400px; width: 1100px;"></div>
+
+
+
+    <!-- 2050 Graph -->
+    <div class = 'row' style = "text-align: center; margin-top: 50px">
+        <div class="col-sm-12">
+
+        <label id='todayPrice2040_2' hidden="hidden">  
+            
+        </label> 
+        
+        &nbsp; &nbsp; &nbsp; &nbsp; 
+        
+        <label id='futurePrice2050_2' hidden="hidden">
+            
+        </label>
+    
+        <div id="myDiv2" style="height: 400px; width: 1100px;"></div>
+
+
+
+
+
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <!-- flask to js -->
 <script src= "{{ url_for('static', filename='js/app.js') }}"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </html>
