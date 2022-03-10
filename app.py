@@ -43,14 +43,17 @@ app = Flask(__name__)
 def home():
     return render_template("index.html")
 
-
+@app.route("/ddl")
+def ddl():
+    return jsonify(["DIA","IWM","QQQ","SPY","XLB","XLE","XLF","XLI","XLK","XLP","XLU","XLV","XLY"])
 
 @app.route("/stock")
 def stock():
 
     session = Session(engine)
 ### DIA
-    result = session.query(dia.future_x2050, 
+    result = session.query(dia.id,
+                           dia.future_x2050,
                            dia.y_predict2050,
                            dia.y_predict,
                            dia.future_x,
@@ -59,9 +62,11 @@ def stock():
                            dia.xp
     ).all()
 
-    dia_dic = {}
+    dia_data = []
 
-    for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in result:
+    for id, future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in result:
+        dia_dic = {}
+        dia_dic["id"] = id
         dia_dic["future_x2050"] = future_x2050
         dia_dic["y_predict2050"] = y_predict2050
         dia_dic["y_predict"] = y_predict
@@ -69,11 +74,13 @@ def stock():
         dia_dic["y_learned"] = y_learned
         dia_dic["y"] = y
         dia_dic["xp"] = xp
+        dia_data.append(dia_dic)
 
 
 ### IWM
 
-    iwm_result = session.query(iwm.future_x2050, 
+    iwm_result = session.query(iwm.id,
+                           iwm.future_x2050, 
                            iwm.y_predict2050,
                            iwm.y_predict,
                            iwm.future_x,
@@ -83,9 +90,11 @@ def stock():
     ).all()
 
 
-    iwm_dic = {}
+    iwm_data = []
 
-    for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in iwm_result:
+    for id, future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in iwm_result:
+        iwm_dic = {}
+        iwm_dic["id"] = id
         iwm_dic["future_x2050"] = future_x2050
         iwm_dic["y_predict2050"] = y_predict2050
         iwm_dic["y_predict"] = y_predict
@@ -93,10 +102,12 @@ def stock():
         iwm_dic["y_learned"] = y_learned
         iwm_dic["y"] = y
         iwm_dic["xp"] = xp
+        iwm_data.append(iwm_dic)
 
 ### QQQ
 
-    qqq_result = session.query(qqq.future_x2050, 
+    qqq_result = session.query(qqq.id,
+                           qqq.future_x2050, 
                            qqq.y_predict2050,
                            qqq.y_predict,
                            qqq.future_x,
@@ -106,9 +117,11 @@ def stock():
     ).all()
 
 
-    qqq_dic = {}
+    qqq_data = []
 
-    for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in qqq_result:
+    for id, future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in qqq_result:
+        qqq_dic = {}
+        qqq_dic["id"] = id
         qqq_dic["future_x2050"] = future_x2050
         qqq_dic["y_predict2050"] = y_predict2050
         qqq_dic["y_predict"] = y_predict
@@ -116,10 +129,12 @@ def stock():
         qqq_dic["y_learned"] = y_learned
         qqq_dic["y"] = y
         qqq_dic["xp"] = xp
+        qqq_data.append(qqq_dic)
 
 ### SPY
 
-    spy_result = session.query(spy.future_x2050, 
+    spy_result = session.query(spy.id,
+                           spy.future_x2050, 
                            spy.y_predict2050,
                            spy.y_predict,
                            spy.future_x,
@@ -129,9 +144,11 @@ def stock():
     ).all()
 
 
-    spy_dic = {}
+    spy_data = []
 
-    for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in spy_result:
+    for id, future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in spy_result:
+        spy_dic = {}
+        spy_dic["id"] = id
         spy_dic["future_x2050"] = future_x2050
         spy_dic["y_predict2050"] = y_predict2050
         spy_dic["y_predict"] = y_predict
@@ -139,10 +156,12 @@ def stock():
         spy_dic["y_learned"] = y_learned
         spy_dic["y"] = y
         spy_dic["xp"] = xp
+        spy_data.append(spy_dic)
     
 ### XLB
 
-    xlb_result = session.query(xlb.future_x2050, 
+    xlb_result = session.query(xlb.id,
+                           xlb.future_x2050, 
                            xlb.y_predict2050,
                            xlb.y_predict,
                            xlb.future_x,
@@ -152,20 +171,24 @@ def stock():
     ).all()
 
 
-    xlb_dic = {}
+    xlb_data = []
 
-    for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xlb_result:
+    for id, future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xlb_result:
+        xlb_dic = {}
+        xlb_dic["id"] = id
         xlb_dic["future_x2050"] = future_x2050
         xlb_dic["y_predict2050"] = y_predict2050
         xlb_dic["y_predict"] = y_predict
         xlb_dic["future_x"] = future_x
         xlb_dic["y_learned"] = y_learned
         xlb_dic["y"] = y
-        xlb_dic["xp"] = xp 
+        xlb_dic["xp"] = xp
+        xlb_data.append(xlb_dic) 
 
 ### XLE
 
-    xle_result = session.query(xle.future_x2050, 
+    xle_result = session.query(xle.id,
+                           xle.future_x2050, 
                            xle.y_predict2050,
                            xle.y_predict,
                            xle.future_x,
@@ -175,20 +198,24 @@ def stock():
     ).all()
 
 
-    xle_dic = {}
+    xle_data = []
 
-    for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xle_result:
+    for id, future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xle_result:
+        xle_dic = {}
+        xle_dic["id"] = id
         xle_dic["future_x2050"] = future_x2050
         xle_dic["y_predict2050"] = y_predict2050
         xle_dic["y_predict"] = y_predict
         xle_dic["future_x"] = future_x
         xle_dic["y_learned"] = y_learned
         xle_dic["y"] = y
-        xle_dic["xp"] = xp  
+        xle_dic["xp"] = xp
+        xle_data.append(xle_dic)  
 
 ### XLF
 
-    xlf_result = session.query(xlf.future_x2050, 
+    xlf_result = session.query(xlf.id,
+                           xlf.future_x2050, 
                            xlf.y_predict2050,
                            xlf.y_predict,
                            xlf.future_x,
@@ -198,20 +225,24 @@ def stock():
     ).all()
 
 
-    xlf_dic = {}
+    xlf_data = []
 
-    for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xlf_result:
+    for id, future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xlf_result:
+        xlf_dic = {}
+        xlf_dic["id"] = id
         xlf_dic["future_x2050"] = future_x2050
         xlf_dic["y_predict2050"] = y_predict2050
         xlf_dic["y_predict"] = y_predict
         xlf_dic["future_x"] = future_x
         xlf_dic["y_learned"] = y_learned
         xlf_dic["y"] = y
-        xlf_dic["xp"] = xp 
+        xlf_dic["xp"] = xp
+        xlf_data.append(xlf_dic) 
 
 ### XLI
 
-    xli_result = session.query(xli.future_x2050, 
+    xli_result = session.query(xli.id,
+                           xli.future_x2050, 
                            xli.y_predict2050,
                            xli.y_predict,
                            xli.future_x,
@@ -221,9 +252,11 @@ def stock():
     ).all()
 
 
-    xli_dic = {}
+    xli_data = []
 
-    for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xli_result:
+    for id, future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xli_result:
+        xli_dic = {}
+        xli_dic["id"] = id
         xli_dic["future_x2050"] = future_x2050
         xli_dic["y_predict2050"] = y_predict2050
         xli_dic["y_predict"] = y_predict
@@ -231,10 +264,12 @@ def stock():
         xli_dic["y_learned"] = y_learned
         xli_dic["y"] = y
         xli_dic["xp"] = xp 
+        xli_data.append(xli_dic)
 
 ### XLK
 
-    xlk_result = session.query(xlk.future_x2050, 
+    xlk_result = session.query(xlk.id,
+                           xlk.future_x2050, 
                            xlk.y_predict2050,
                            xlk.y_predict,
                            xlk.future_x,
@@ -244,9 +279,11 @@ def stock():
     ).all()
 
 
-    xlk_dic = {}
+    xlk_data = []
 
-    for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xlk_result:
+    for id, future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xlk_result:
+        xlk_dic = {}
+        xlk_dic["id"] = id
         xlk_dic["future_x2050"] = future_x2050
         xlk_dic["y_predict2050"] = y_predict2050
         xlk_dic["y_predict"] = y_predict
@@ -254,10 +291,12 @@ def stock():
         xlk_dic["y_learned"] = y_learned
         xlk_dic["y"] = y
         xlk_dic["xp"] = xp 
+        xlk_data.append(xlk_dic)
 
 ### XLP
 
-    xlp_result = session.query(xlp.future_x2050, 
+    xlp_result = session.query(xlp.id,
+                           xlp.future_x2050, 
                            xlp.y_predict2050,
                            xlp.y_predict,
                            xlp.future_x,
@@ -267,20 +306,24 @@ def stock():
     ).all()
 
 
-    xlp_dic = {}
+    xlp_data = []
 
-    for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xlp_result:
+    for id, future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xlp_result:
+        xlp_dic = {}
+        xlp_dic["id"] = id
         xlp_dic["future_x2050"] = future_x2050
         xlp_dic["y_predict2050"] = y_predict2050
         xlp_dic["y_predict"] = y_predict
         xlp_dic["future_x"] = future_x
         xlp_dic["y_learned"] = y_learned
         xlp_dic["y"] = y
-        xlp_dic["xp"] = xp 
+        xlp_dic["xp"] = xp
+        xlp_data.append(xlp_dic)
 
 ### XLU
 
-    xlu_result = session.query(xlu.future_x2050, 
+    xlu_result = session.query(xlu.id,
+                           xlu.future_x2050, 
                            xlu.y_predict2050,
                            xlu.y_predict,
                            xlu.future_x,
@@ -290,20 +333,24 @@ def stock():
     ).all()
 
 
-    xlu_dic = {}
+    xlu_data = []
 
-    for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xlu_result:
+    for id, future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xlu_result:
+        xlu_dic = {}
+        xlu_dic["id"] = id
         xlu_dic["future_x2050"] = future_x2050
         xlu_dic["y_predict2050"] = y_predict2050
         xlu_dic["y_predict"] = y_predict
         xlu_dic["future_x"] = future_x
         xlu_dic["y_learned"] = y_learned
         xlu_dic["y"] = y
-        xlu_dic["xp"] = xp 
+        xlu_dic["xp"] = xp
+        xlu_data.append(xlu_dic) 
 
 ### XLV
 
-    xlv_result = session.query(xlv.future_x2050, 
+    xlv_result = session.query(xlv.id,
+                           xlv.future_x2050, 
                            xlv.y_predict2050,
                            xlv.y_predict,
                            xlv.future_x,
@@ -313,20 +360,24 @@ def stock():
     ).all()
 
 
-    xlv_dic = {}
+    xlv_data = []
 
-    for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xlv_result:
+    for id, future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xlv_result:
+        xlv_dic = {}
+        xlv_dic["id"] = id
         xlv_dic["future_x2050"] = future_x2050
         xlv_dic["y_predict2050"] = y_predict2050
         xlv_dic["y_predict"] = y_predict
         xlv_dic["future_x"] = future_x
         xlv_dic["y_learned"] = y_learned
         xlv_dic["y"] = y
-        xlv_dic["xp"] = xp 
+        xlv_dic["xp"] = xp
+        xlv_data.append(xlv_dic) 
     
 ### XLY
 
-    xly_result = session.query(xly.future_x2050, 
+    xly_result = session.query(xly.id,
+                           xly.future_x2050, 
                            xly.y_predict2050,
                            xly.y_predict,
                            xly.future_x,
@@ -336,9 +387,11 @@ def stock():
     ).all()
 
 
-    xly_dic = {}
+    xly_data = []
 
-    for future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xly_result:
+    for id, future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in xly_result:
+        xly_dic = {}
+        xly_dic["id"] = id
         xly_dic["future_x2050"] = future_x2050
         xly_dic["y_predict2050"] = y_predict2050
         xly_dic["y_predict"] = y_predict
@@ -346,7 +399,21 @@ def stock():
         xly_dic["y_learned"] = y_learned
         xly_dic["y"] = y
         xly_dic["xp"] = xp 
-    return jsonify(dia_dic, iwm_dic, qqq_dic, spy_dic, xlb_dic, xle_dic, xlf_dic, xli_dic, xlk_dic, xlp_dic, xlu_dic, xlv_dic, xly_dic)
+        xly_data.append(xly_dic)
+
+    return jsonify(dia_data, 
+                    iwm_data, 
+                    qqq_data, 
+                    spy_data, 
+                    xlb_data, 
+                    xle_data, 
+                    xlf_data, 
+                    xli_data, 
+                    xlk_data, 
+                    xlp_data, 
+                    xlu_data, 
+                    xlv_data, 
+                    xly_data)
 
 if __name__ == '__main__':
     app.run(debug=True)
