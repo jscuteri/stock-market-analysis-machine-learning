@@ -64,7 +64,7 @@ def stock():
 
     for id, future_x2050, y_predict2050, y_predict, future_x, y_learned, y, xp in result:
         dia_dic = {}
-        dia_data["id"] = id
+        dia_dic["id"] = id
         dia_dic["future_x2050"] = future_x2050
         dia_dic["y_predict2050"] = y_predict2050
         dia_dic["y_predict"] = y_predict
@@ -239,7 +239,7 @@ def stock():
 
 ### XLI
 
-    xli_result = session.query(xlf.id,
+    xli_result = session.query(xli.id,
                            xli.future_x2050, 
                            xli.y_predict2050,
                            xli.y_predict,
@@ -399,7 +399,19 @@ def stock():
         xly_dic["xp"] = xp 
         xly_data.append(xly_dic)
 
-    return jsonify(dia_data, iwm_data, qqq_data, spy_data, xlb_data, xle_data, xlf_data, xli_data, xlk_data, xlp_data, xlu_data, xlv_data, xly_data)
+    return jsonify(dia_data, 
+                    iwm_data, 
+                    qqq_data, 
+                    spy_data, 
+                    xlb_data, 
+                    xle_data, 
+                    xlf_data, 
+                    xli_data, 
+                    xlk_data, 
+                    xlp_data, 
+                    xlu_data, 
+                    xlv_data, 
+                    xly_data)
 
 if __name__ == '__main__':
     app.run(debug=True)
