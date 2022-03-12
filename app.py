@@ -7,7 +7,7 @@ from sqlalchemy import create_engine, func
 import numpy as np
 
 
-engine = create_engine("postgresql://postgres:postgres@localhost:5432/StockMarket")
+engine = create_engine("postgresql://postgres:Static2$@localhost:5432/StockMarket")
 
 # reflect an existing database into a new model
 Base = automap_base()

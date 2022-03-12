@@ -70,27 +70,29 @@
         <br>
     <!-- Date Picker -->
     <div class='container'>
-    
-        <form autocomplete="off">
-            <div class="dropdown">
-                <select id="selDataset"></select>
+        <div class="row">
+            <div class="col">
+                <form autocomplete="off">
+                    <div class="dropdown">
+                        <select id="selDataset"></select>
+                    </div>
+
+                    <!-- <input type="text"  placehoder="Start Date" id="startdate"/> Start Date
+                    <br>
+                    <input type="text" placehoder="End Date" id="enddate"/> End Date -->
+
+                    <br>
+
+                    <button type="submit" class="btn btn-primary" onclick="Submit();return false;">Submit</button>
+
+                    &nbsp;
+
+                    <button type="submit" class="btn btn-primary">Reset</button>
+
+                </form>
             </div>
-
-            <!-- <input type="text"  placehoder="Start Date" id="startdate"/> Start Date
-            <br>
-            <input type="text" placehoder="End Date" id="enddate"/> End Date -->
-
-            <br>
-
-            <button type="submit" class="btn btn-primary" onclick="Submit();return false;">Submit</button>
-
-            &nbsp;
-
-            <button type="submit" class="btn btn-primary">Reset</button>
-
-        </form>
-    
-    </div>
+        </div>
+        
     
     <!-- Script -->
     <script type="text/javascript">
@@ -116,6 +118,12 @@
     <!-- 2040 Graph -->
     <div class = 'row' style = "text-align: center; margin-top: 50px">
         <div class="col-sm-12">
+
+        <div class="col justify-content-md-center" id="description">
+                
+        </div>
+        
+        <br> </br>
 
         <label id='todayPrice2040_1' hidden="hidden">  
             
@@ -148,9 +156,6 @@
         <div id="myDiv2" style="height: 400px; width: 1100px;"></div>
 
 
-
-
-
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
@@ -158,3 +163,16 @@
 <script src= "{{ url_for('static', filename='js/app.js') }}"></script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </html>
+Collapse
+
+
+
+
+
+
+
+
+
+
+
+
